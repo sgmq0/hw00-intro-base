@@ -25,9 +25,9 @@ let prevTesselations: number = 5;
 function loadScene() {
   // icosphere = new Icosphere(vec3.fromValues(0, 0, 0), 1, controls.tesselations);
   // icosphere.create();
-  // square = new Square(vec3.fromValues(0, 0, 0));
-  // square.create();
-  cube = new Cube(vec3.fromValues(0, 0, 0), 1, controls.tesselations);
+  square = new Square(vec3.fromValues(0, 0, 0));
+  square.create();
+  cube = new Cube(vec3.fromValues(0, 0, 0), 1);
   cube.create();
 }
 
@@ -71,6 +71,7 @@ function main() {
   const renderer = new OpenGLRenderer(canvas);
   renderer.setClearColor(0.2, 0.2, 0.2, 1);
   gl.enable(gl.DEPTH_TEST);
+  gl.enable(gl.SAMPLE_ALPHA_TO_COVERAGE)
 
   var color = vec4.fromValues(palette.color[0] / 255, palette.color[1]/255, palette.color[2]/255, 1);
 
@@ -79,6 +80,10 @@ function main() {
     new Shader(gl.FRAGMENT_SHADER, require('./shaders/lambert-frag.glsl')),
   ]);
 
+  const grass = new ShaderProgram([
+    new Shader(gl.VERTEX_SHADER, require('./shaders/grass-vert.glsl')),
+    new Shader(gl.FRAGMENT_SHADER, require('./shaders/grass-frag.glsl')),
+  ])
 
   // This function will be called every frame
   function tick() {
@@ -90,19 +95,21 @@ function main() {
     if(controls.tesselations != prevTesselations)
     {
       prevTesselations = controls.tesselations;
-      // icosphere = new Icosphere(vec3.fromValues(0, 0, 0), 1, prevTesselations);
-      // icosphere.create();
-      cube = new Cube(vec3.fromValues(0, 0, 0), 1, prevTesselations);
+      square = new Square(vec3.fromValues(0, 0, 0));
+      square.create();
+      cube = new Cube(vec3.fromValues(0, 0, 0), 1);
       cube.create();
     }
 
     color = vec4.fromValues(palette.color[0] / 255, palette.color[1]/255, palette.color[2]/255, 1);
 
     renderer.render(camera, lambert, [
-      //icosphere,
-      //square,
       cube,
     ], color, time);
+
+    renderer.render(camera, grass, [
+      square
+    ], color, time)
     stats.end();
 
     // Tell the browser to call `tick` again whenever it renders a new frame

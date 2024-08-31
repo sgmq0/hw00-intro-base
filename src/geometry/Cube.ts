@@ -9,7 +9,7 @@ class Cube extends Drawable {
   normals: Float32Array;
   center: vec4;
 
-  constructor(center: vec3, public radius: number, public subdivisions: number) {
+  constructor(center: vec3, public radius: number) {
     super(); // Call the constructor of the super class. This is required.
     this.center = vec4.fromValues(center[0], center[1], center[2], 1);
   }
@@ -17,8 +17,8 @@ class Cube extends Drawable {
   create() {
     const S = 0.75;
 
-    let maxIndexCount = 20 * Math.pow(4, this.subdivisions);
-    let maxVertexCount = 10 * Math.pow(4, this.subdivisions) + 2;
+    let maxIndexCount = 12;
+    let maxVertexCount = 8;
 
     // Create buffers to back geometry data
     // Index data will ping pong back and forth between buffer0 and buffer1 during creation
@@ -43,7 +43,6 @@ class Cube extends Drawable {
     // The C++ analogy to this would be something like:
     // triangles[i] = reinterpret_cast<std::array<unsigned int, 3>*>(&buffer[offset]);
     let triangles: Array<Uint32Array> = new Array(12);
-    let nextTriangles: Array<Uint32Array> = new Array();
     for (let i = 0; i < 12; ++i) {
       triangles[i] = new Uint32Array(buffers[b], indexByteOffset + i * 3 * Uint32Array.BYTES_PER_ELEMENT, 3);
     }
@@ -54,7 +53,7 @@ class Cube extends Drawable {
       vertices[i] =new Float32Array(buffer0, vertexByteOffset + i * 4 * Float32Array.BYTES_PER_ELEMENT, 4);
     }
 
-    // Initialize normals for a 20-sided icosahedron
+    // Initialize normals
     vertices[0].set([ S, S, S, 0 ]);
     vertices[1].set([ S, S, -S, 0 ]);
     vertices[2].set([ S, -S, S, 0 ]);
@@ -64,7 +63,7 @@ class Cube extends Drawable {
     vertices[6].set([ S, -S, -S, 0 ]);
     vertices[7].set([ -S, -S, -S, 0 ]);
 
-    // Initialize indices for a 20-sided icosahedron
+    // Initialize indices
     triangles[0].set([ 0,1,2 ]);
     triangles[1].set([ 1,2,6 ]);
     triangles[2].set([ 1,6,7 ]);

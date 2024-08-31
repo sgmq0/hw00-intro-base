@@ -47,8 +47,12 @@ void main()
                                                             // perpendicular to the surface after the surface is transformed by
                                                             // the model matrix.
 
-
-    vec4 modelposition = u_Model * vs_Pos;   // Temporarily store the transformed vertex positions for use below
+    vec4 new_Pos = vs_Pos;
+    if (vs_Pos.y > 1.0) {
+      new_Pos = vec4(vs_Pos.x + sin(u_Time / 30.f) / 10.f, vs_Pos.y, vs_Pos.z, vs_Pos.w);
+    } 
+ 
+    vec4 modelposition = u_Model * new_Pos;   // Temporarily store the transformed vertex positions for use below
 
     fs_LightVec = lightPos - modelposition;  // Compute the direction in which the light source lies
 
