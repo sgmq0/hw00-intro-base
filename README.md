@@ -5,6 +5,12 @@
 </p>
 <p align="center">(source: Ken Perlin)</p>
 
+## Description
+
+### Sources I Used 
+- [Reference for dat.gui API](https://barionleg.github.io/dat.gui/API.html)
+- [Noise function code](https://github.com/stegu/webgl-noise)
+
 ## Objective
 - Check that the tools and build configuration we will be using for the class works.
 - Start learning Typescript and WebGL2

@@ -40,6 +40,8 @@ function main() {
   stats.domElement.style.top = '0px';
   document.body.appendChild(stats.domElement);
 
+  var time = 0;
+
   // Add controls to the gui
   const gui = new DAT.GUI();
   gui.add(controls, 'tesselations', 0, 8).step(1);
@@ -100,11 +102,12 @@ function main() {
       //icosphere,
       //square,
       cube,
-    ], color);
+    ], color, time);
     stats.end();
 
     // Tell the browser to call `tick` again whenever it renders a new frame
     requestAnimationFrame(tick);
+    time += 1;
   }
 
   window.addEventListener('resize', function() {
