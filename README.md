@@ -1,15 +1,20 @@
 # HW 0: Intro to Javascript and WebGL
 
-<p align="center">
-  <img width="360" height="360" src="https://user-images.githubusercontent.com/1758825/132532354-e3a45402-e484-499e-bfa7-2d73b9f2c946.png">
-</p>
-<p align="center">(source: Ken Perlin)</p>
-
 ## Description
+Here's a Minecraft block! The fragment shader on the cube is comprised of a few layers of 3D perlin noise, mixed to achieve the classic dirt look.
+
+For the grass, I modified the existing `Square` and created a new fragment and vertex shader for it to animate. The color was achieved through (stretched) 3D perlin noise. I also turned on transparency so that it'd look better.
+
+<p align="center">
+    <img width="360" height="360" src="https://i.imgur.com/h0nLzvG.gif">
+  </p>
+<p align="center">It wiggles!</p>
 
 ### Sources I Used 
 - [Reference for dat.gui API](https://barionleg.github.io/dat.gui/API.html)
 - [Noise function code](https://github.com/stegu/webgl-noise)
+
+(most of this stuff is tbd in case i have to change things)
 
 ## Objective
 - Check that the tools and build configuration we will be using for the class works.
