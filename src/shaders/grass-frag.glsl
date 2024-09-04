@@ -18,11 +18,8 @@ in float fs_LightIntensity;
 out vec4 out_Col; // This is the final output color that you will see on your
                   // screen for the pixel that is currently being processed.
 
-// GLSL textureless classic 3D noise "cnoise"
-// Author:  Stefan Gustavson (stefan.gustavson@liu.se)
-// Version: 2011-10-11
+// this code from stefan gustavson
 // https://github.com/stegu/webgl-noise
-
 vec3 mod289(vec3 x)
 {
   return x - floor(x * (1.0 / 289.0)) * 289.0;
