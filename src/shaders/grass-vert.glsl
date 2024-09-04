@@ -37,6 +37,7 @@ out float fs_LightIntensity;
 const vec4 lightPos = vec4(5, 5, 3, 1); //The position of our virtual light, which is used to compute the shading of
                                         //the geometry in the fragment shader.
 
+//test deploy
 // 2d random noise by morgan mcguire
 // https://www.shadertoy.com/view/4dS3Wd
 float hash(vec2 p) {
