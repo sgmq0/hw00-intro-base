@@ -12,7 +12,7 @@ For the grass, I modified the existing `Square` and created a new fragment and v
 
 ### Sources I Used 
 - [Reference for dat.gui API](https://barionleg.github.io/dat.gui/API.html)
-- [Noise function code](https://github.com/stegu/webgl-noise)
+- [Reference for perlin noise](https://github.com/stegu/webgl-noise)
 
 (most of this stuff is tbd in case i have to change things)
 

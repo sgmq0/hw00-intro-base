@@ -13,6 +13,7 @@ in vec4 fs_LightVec;
 in vec4 fs_Col;
 in vec4 fs_Pos;
 in float fs_Time;
+in float fs_LightIntensity;
 
 out vec4 out_Col; // This is the final output color that you will see on your
                   // screen for the pixel that is currently being processed.
@@ -126,7 +127,7 @@ void main()
     // Avoid negative lighting values
     // diffuseTerm = clamp(diffuseTerm, 0, 1);
 
-    float ambientTerm = 0.2;
+    float ambientTerm = fs_LightIntensity;
 
     float lightIntensity = diffuseTerm + ambientTerm;   //Add a small float value to the color multiplier
                                                         //to simulate ambient lighting. This ensures that faces that are not
@@ -144,5 +145,6 @@ void main()
         grassColor.a = 0.0;
     }
     
-    out_Col = grassColor;
+    vec4 result = grassColor;
+    out_Col = vec4(result.rgb * lightIntensity, result.a);
 }

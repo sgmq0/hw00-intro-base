@@ -20,6 +20,8 @@ uniform mat4 u_ViewProj;    // The matrix that defines the camera's transformati
                             // but in HW3 you'll have to generate one yourself
 
 uniform float u_Time;            // just the time, used for animating stuff
+uniform float u_GrassPercent;    // silly grass :3
+uniform float u_LightIntensity;
 
 in vec4 vs_Pos;             // The array of vertex positions passed to the shader
 in vec4 vs_Nor;             // The array of vertex normals passed to the shader
@@ -30,6 +32,8 @@ out vec4 fs_LightVec;       // The direction in which our virtual light lies, re
 out vec4 fs_Col;            // The color of each vertex. This is implicitly passed to the fragment shader.
 out vec4 fs_Pos;
 out float fs_Time;
+out float fs_Grass;
+out float fs_LightIntensity;
 
 const vec4 lightPos = vec4(5, 5, 3, 1); //The position of our virtual light, which is used to compute the shading of
                                         //the geometry in the fragment shader.
@@ -39,6 +43,8 @@ void main()
     fs_Col = vs_Col;                         // Pass the vertex colors to the fragment shader for interpolation
     fs_Pos = vs_Pos;
     fs_Time = u_Time;
+    fs_Grass = u_GrassPercent;
+    fs_LightIntensity = u_LightIntensity;
 
     mat3 invTranspose = mat3(u_ModelInvTr);
     fs_Nor = vec4(invTranspose * vec3(vs_Nor), 0);          // Pass the vertex normals to the fragment shader for interpolation.
