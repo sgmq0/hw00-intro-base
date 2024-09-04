@@ -1,20 +1,25 @@
 # HW 0: Intro to Javascript and WebGL
 
 ## Description
-Here's a Minecraft block! The fragment shader on the cube is comprised of a few layers of 3D perlin noise, mixed to achieve the classic dirt look.
+Here's a Minecraft block! [Live demo 🚀](https://sgmq0.github.io/hw00-intro-base/)
 
-For the grass, I modified the existing `Square` and created a new fragment and vertex shader for it to animate. The color was achieved through (stretched) 3D perlin noise. I also turned on transparency so that it'd look better.
+**Fragment Shader**
+- Several layers of Perlin noise with FBM octaves, mixed to achieve the classic dirt look
+- For the grass, I just stretched some more 3D Perlin Noise and enabled alpha
+
+**Vertex Shader**
+- Modified the `Square` class so that it'd actually work, and created new Grass shaders
+- Sin function on only the top half of the grass, with a bit of noise on the speed for variety
 
 <p align="center">
-    <img width="360" height="360" src="https://i.imgur.com/h0nLzvG.gif">
+    <img width="360" height="360" src="https://i.imgur.com/37X1NYn.gif">
   </p>
 <p align="center">It wiggles!</p>
 
 ### Sources I Used 
 - [Reference for dat.gui API](https://barionleg.github.io/dat.gui/API.html)
-- [Reference for perlin noise](https://github.com/stegu/webgl-noise)
-
-(most of this stuff is tbd in case i have to change things)
+- [Reference for Perlin Noise](https://github.com/stegu/webgl-noise)
+- [Reference for 2D Noise](https://www.shadertoy.com/view/4dS3Wd)
 
 ## Objective
 - Check that the tools and build configuration we will be using for the class works.
