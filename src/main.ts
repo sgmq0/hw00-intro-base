@@ -19,6 +19,7 @@ const controls = {
   'grass amount': 0.5,
   'light intensity': 0.5,
 }
+//testing
 
 let icosphere: Icosphere;
 let square: Square;
